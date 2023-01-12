@@ -19,13 +19,14 @@
         <form class=" m-3">
             <div class="mb-3 col-4">
               <label class="form-label fs-2">Search for a City</label>
-              <input class="form-control border-2 border-dark" placeholder="Benton">
+              <input id='searchBar' class="form-control border-2 border-dark" placeholder="Benton">
             </div>
-            <button type="submit" class="btn col-4">Search</button>
+            <button id='searchBtn' class="btn col-4">Search</button>
         </form>
         <hr class="col-4 m-2">
+        <div id="searchHistory"></div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js" defer></script>
 </body>
 </html>
