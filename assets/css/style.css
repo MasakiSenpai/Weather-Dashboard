@@ -1,0 +1,18 @@
+* {
+    font-family: 'Quando', serif;
+    /* font-family: 'Merienda', cursive; */
+    /* font-family: 'Merienda One', cursive; */
+    /* font-family: 'Limelight', cursive; */
+
+}
+
+nav {
+    /* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
+    background: linear-gradient(109.6deg, rgb(78, 112, 157) 11.2%, rgb(137, 164, 199) 65%, rgb(205, 213, 224) 100.2%);
+}
+
+button {
+    background: linear-gradient(109.6deg, rgb(78, 112, 157) 11.2%, rgb(137, 164, 199) 65%, rgb(205, 213, 224) 100.2%);
+
+}
+
