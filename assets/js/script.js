@@ -18,6 +18,7 @@ function curentWeather(city) {
         console.log(data);
         var cityName = data.name;
         var previous = document.createElement('p');
+        previous.setAttribute('class', 'btn col-4 m-2');
         previous.textContent =  cityName;
         searchHistory.appendChild(previous);
     })
