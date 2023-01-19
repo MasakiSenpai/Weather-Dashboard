@@ -17,6 +17,23 @@ var cardEl = document.getElementById('card');
 // puts the current date on the page
 dateEl.textContent = todayDate;
 
+// function to make the forecast cards
+function makeCards() {
+    for (let i = 0; 0 < 6; i++) {
+        var card = document.createElement('div');
+        card.setAttribute('class', 'card');
+        var ulEl = document.createElement('ul');
+        ulEl.setAttribute('class', 'list-group list-group-flush')
+        ulEl.innerHTML = 
+        `   <li id="dateForecast" class="list-group-item">one</li>
+            <li id="iconForecast" class="list-group-item">two</li> 
+            <li id="highT" class="list-group-item">three</li>
+            <li id="lowT" class="list-group-item">four</li> 
+            <li id="humiForecast" class="list-group-item">five</li> `;
+        card.appendChild(ulEl);
+    }
+}
+
 // takes the value use typed and pushes that value to the next fuctions
 function getCityName(event) {
     event.preventDefault();
@@ -107,3 +124,7 @@ function defaultForecast() {
 searchBtn.addEventListener('click', getCityName);
 defaultWeather();
 defaultForecast();
+makeCards();
+
+// 0, 8, 16, 24, 32
+// 5, 13, 21, 29, 37
