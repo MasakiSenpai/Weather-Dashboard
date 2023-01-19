@@ -12,6 +12,7 @@ var lowEl = document.getElementById('low');
 var weatherEl = document.getElementById('weather');
 var iconEl = document.getElementById('icon');
 var humidityEl = document.getElementById('humidity');
+var cardEl = document.getElementById('card');
 
 // puts the current date on the page
 dateEl.textContent = todayDate;
@@ -85,8 +86,8 @@ function defaultWeather() {
         
         locationEl.textContent = location;
         tempEl.textContent = 'Currently: ' + temp + '°F';
-        highEl.textContent = high + '°F';
-        lowEl.textContent = low + '°F';
+        highEl.textContent = 'High: ' + high + '°F';
+        lowEl.textContent = 'Low: ' + low + '°F';
         weatherEl.textContent = description;
         iconEl.setAttribute('src', 'http://openweathermap.org/img/wn/' + icon + '@2x.png');
         iconEl.setAttribute('style', 'width: 40%')
