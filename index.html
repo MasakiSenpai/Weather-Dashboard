@@ -16,15 +16,38 @@
         </div>
     </nav>
     <main>
-        <form class=" m-3">
-            <div class="mb-3 col-4">
-              <label class="form-label fs-2">Search for a City</label>
-              <input id='searchBar' class="form-control border-2 border-dark" placeholder="Benton">
+        <div class="row container-fluid">
+            <div class="col-md-3 col-12 m-3">
+                <form class="">
+                    <div class="mb-3">
+                    <label class="form-label fs-2">Search for a City</label>
+                    <input id='searchBar' class="form-control border-2 border-dark" placeholder="Benton">
+                    </div>
+                    <button id='searchBtn' class="btn col-12">Search</button>
+                </form>
+                <hr class="col-12 m-2">
+                <div id="searchHistory" class="col"></div>
             </div>
-            <button id='searchBtn' class="btn col-4">Search</button>
-        </form>
-        <hr class="col-4 m-2">
-        <div id="searchHistory" class=""></div>
+            <div class="col-md-8 col-12 mt-5">
+                <div class="container">
+                    <div id ="greyBox" class="row text-white">
+                        <div class="col-3 text-center">
+                            <h2>Location</h2>
+                            <p>Date</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <h2>TodaysTemp</h2> 
+                        </div>
+                        <div class="col-3">
+                            <h2>Weather</h2>
+                        </div>
+                        <div class="col-3">
+                            <h2>Humidity</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="./assets/js/script.js" defer></script>

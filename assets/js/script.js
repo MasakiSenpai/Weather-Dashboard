@@ -18,14 +18,23 @@ function curentWeather(city) {
         console.log(data);
         var cityName = data.name;
         var previous = document.createElement('p');
-        previous.setAttribute('class', 'btn col-4 m-2');
+        previous.setAttribute('class', 'btn col-12');
         previous.textContent =  cityName;
         searchHistory.appendChild(previous);
     })
 };
 
 function forecast(city) {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid=1ff1b9e8930bbe84b844222ea3d5a398')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=1ff1b9e8930bbe84b844222ea3d5a398')
+}
+
+function defaultWeather(city) {
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Atlant&appid=1ff1b9e8930bbe84b844222ea3d5a398').then(function(response) {
+        return response.json
+    }).then(function(data) {
+        console.log(data);
+    })
 }
 
 searchBtn.addEventListener('click', getCityName);
+defaultWeather();

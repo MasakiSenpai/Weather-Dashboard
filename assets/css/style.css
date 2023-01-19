@@ -16,6 +16,7 @@ nav {
     background: radial-gradient(1702px at -70.8% -20.8%, rgb(221, 221, 221) 0%, rgb(25, 46, 152) 100.2%);
 }
 
-/* #searchHistory {
-    max-width: 30%;
-} */
+#greyBox {
+    background-color: #5D6D7E;
+    border-radius: 10px;
+}
