@@ -15,9 +15,9 @@
             <span class="navbar-brand mb-0 h1 p-4 fs-2 text-center">Weather Dashboard</span>
         </div>
     </nav>
-    <main>
+    <main class="container-fluid">
         <div class="row container-fluid">
-            <div class="col-md-3 col-12 m-3">
+            <div class="col-lg-3 col-md-12 m-3">
                 <form class="">
                     <div class="mb-3">
                     <label class="form-label fs-2">Search for a City</label>
@@ -28,28 +28,34 @@
                 <hr class="col-12 m-2">
                 <div id="searchHistory" class="col"></div>
             </div>
-            <div class="col-md-8 col-12 mt-5">
-                <div class="container">
-                    <div id ="greyBox" class="row text-white">
-                        <div class="col-3 text-center">
-                            <h2>Location</h2>
-                            <p>Date</p>
-                        </div>
-                        <div class="col-3 text-center">
-                            <h2>TodaysTemp</h2> 
-                        </div>
-                        <div class="col-3">
-                            <h2>Weather</h2>
-                        </div>
-                        <div class="col-3">
-                            <h2>Humidity</h2>
-                        </div>
+            <div class="col-lg-8 col-md-12 mt-5 ms-3">
+                <div id ="greyBox" class="row text-white p-4">
+                    <div class="col-3 text-center m-auto">
+                        <h3 id="location"></h3>
+                        <p id="date"></p>
+                    </div>
+                    <div class="col-4 row text-center m-auto">
+                        <h3 id="temp"></h3> 
+                        <p id="high" class="col"></p>
+                        <p id="low" class="col"></p>
+                    </div>
+                    <div class="col-2 text-center m-auto">
+                        <h3 id="weather" class="m-2"></h3>
+                        <img id="icon">
+                    </div>
+                    <div class="col-3 text-center m-auto">
+                        <h3>Humidity</h3>
+                        <p id="humidity"></p>
                     </div>
                 </div>
+                <div class="mt-5">
+                    <h2>5 Day Forecast</h2>
+                </div>
+                <div id="card" class="row"></div>
             </div>
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js" integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/js/script.js" defer></script>
 </body>
 </html>
