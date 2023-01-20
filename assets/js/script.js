@@ -19,11 +19,12 @@ dateEl.textContent = todayDate;
 
 // function to make the forecast cards
 function makeCards() {
-    for (let i = 0; 0 < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         var card = document.createElement('div');
-        card.setAttribute('class', 'card');
+        card.setAttribute('class', 'card row');
+        cardEl.appendChild(card);
         var ulEl = document.createElement('ul');
-        ulEl.setAttribute('class', 'list-group list-group-flush')
+        ulEl.setAttribute('class', 'list-group list-group-flush col-2')
         ulEl.innerHTML = 
         `   <li id="dateForecast" class="list-group-item">one</li>
             <li id="iconForecast" class="list-group-item">two</li> 
