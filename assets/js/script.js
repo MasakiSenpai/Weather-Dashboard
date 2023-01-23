@@ -3,7 +3,8 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/forecast?q=CITYNAME&appid
 var searchBtn = document.getElementById('searchBtn');
 var searchBar = document.getElementById('searchBar');
 var searchHistory = document.getElementById('searchHistory');
-var todayDate = dayjs().format('MM~D~YYYY');
+// var todayDate = dayjs().format('MM~D~YYYY');
+var todayDate = dayjs();
 var locationEl = document.getElementById('location');
 var dateEl = document.getElementById('date');
 var tempEl = document.getElementById('temp');
@@ -14,24 +15,27 @@ var iconEl = document.getElementById('icon');
 var humidityEl = document.getElementById('humidity');
 var cardEl = document.getElementById('card');
 
+
 // puts the current date on the page
-dateEl.textContent = todayDate;
+dateEl.textContent = todayDate.format('MM~D~YYYY');
 
 // function to make the forecast cards
 function makeCards() {
     for (let i = 0; i < 5; i++) {
         var card = document.createElement('div');
-        card.setAttribute('class', 'card row');
+        card.setAttribute('class', 'card m-1');
+        card.setAttribute('style', 'width: 15rem;');
         cardEl.appendChild(card);
         var ulEl = document.createElement('ul');
-        ulEl.setAttribute('class', 'list-group list-group-flush col-2')
+        ulEl.setAttribute('class', 'list-group list-group-flush')
         ulEl.innerHTML = 
-        `   <li id="dateForecast" class="list-group-item">one</li>
-            <li id="iconForecast" class="list-group-item">two</li> 
-            <li id="highT" class="list-group-item">three</li>
-            <li id="lowT" class="list-group-item">four</li> 
-            <li id="humiForecast" class="list-group-item">five</li> `;
+        `   <li id="forecastDate" class="list-group-item"></li>
+            <li id="forecastIcon" class="list-group-item"></li> 
+            <li id="weatherType" class="list-group-item"></li>
+            <li id="forecastTemp" class="list-group-item"></li> 
+            <li id="forecastHumi" class="list-group-item"></li> `;
         card.appendChild(ulEl);
+        // console.log
     }
 }
 
@@ -119,6 +123,16 @@ function defaultForecast() {
         return response.json()
     }).then(function(data) {
         console.log(data)
+        
+        var forecastDateEl = document.getElementById('forecastDate');
+        var forecastDate = todayDate.add(1, 'day').format('MM~D~YYYY');
+        forecastDateEl.textContent = forecastDate;
+
+        var forecastTempEL = document.getElementById('forecastTemp');
+        var forecastTemp = data.list[6].main.temp;
+        forecastTempEL.textContent = forecastTemp;
+
+        
     })
 }
 
@@ -128,4 +142,5 @@ defaultForecast();
 makeCards();
 
 // 0, 8, 16, 24, 32
-// 5, 13, 21, 29, 37
+// 6, 14, 22, 30, 38
+// data.list[].main.temp

@@ -21,6 +21,6 @@ nav {
     border-radius: 10px;
 }
 
-/* .list-group-item {
-
-} */
+#cardDiv {
+    width: 22rem;
+}
