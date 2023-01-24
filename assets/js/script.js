@@ -15,7 +15,6 @@ var iconEl = document.getElementById('icon');
 var humidityEl = document.getElementById('humidity');
 var cardEl = document.getElementById('card');
 
-
 // puts the current date on the page
 dateEl.textContent = todayDate.format('MM~D~YYYY');
 
@@ -32,8 +31,8 @@ function makeCards() {
     for (let i = 0; i < 5; i++) {
         var card = document.createElement('div');
         // card.id = `card${i}`
-        card.setAttribute('class', 'card m-1');
-        card.setAttribute('style', 'width: 15rem;');
+        card.setAttribute('class', 'card col-md-12 col-lg-2 m-1');
+        card.setAttribute('style', 'min-width: 175px;');
         cardEl.appendChild(card);
         var ulEl = document.createElement('ul');
         ulEl.setAttribute('class', 'list-group list-group-flush')
@@ -133,9 +132,9 @@ function defaultWeather() {
         return response.json()
     }).then(function(data) {
         var location = data.name;
-        var temp = data.main.temp;
-        var high = data.main.temp_max;
-        var low = data.main.temp_min;
+        var temp = Math.round(data.main.temp);
+        var high = Math.round(data.main.temp_max);
+        var low = Math.round(data.main.temp_min);
         var humidity = data.main.humidity;
         var description = data.weather[0].description;
         var icon = data.weather[0].icon;
@@ -146,7 +145,7 @@ function defaultWeather() {
         lowEl.textContent = 'Low: ' + low + '°F';
         weatherEl.textContent = description;
         iconEl.setAttribute('src', 'http://openweathermap.org/img/wn/' + icon + '@2x.png');
-        iconEl.setAttribute('style', 'width: 40%')
+        iconEl.setAttribute('style', 'width: 40%; max-width: 100px;')
         humidityEl.textContent = humidity + '%';
     })
 }
@@ -197,6 +196,30 @@ function defaultForecast() {
         weatherType3.textContent = data.list[30].weather[0].description;
         weatherType4.textContent = data.list[38].weather[0].description;
     
+        // filling in the temp in the forecast cards
+        var forecastTemp = document.getElementById(`forecastTemp${0}`)
+        var forecastTemp1 = document.getElementById(`forecastTemp${1}`)
+        var forecastTemp2 = document.getElementById(`forecastTemp${2}`)
+        var forecastTemp3 = document.getElementById(`forecastTemp${3}`)
+        var forecastTemp4 = document.getElementById(`forecastTemp${4}`)
+
+        forecastTemp.textContent = Math.round(data.list[6].main.temp) + '°F';
+        forecastTemp1.textContent = Math.round(data.list[14].main.temp) + '°F';
+        forecastTemp2.textContent = Math.round(data.list[22].main.temp) + '°F';
+        forecastTemp3.textContent = Math.round(data.list[30].main.temp) + '°F';
+        forecastTemp4.textContent = Math.round(data.list[38].main.temp) + '°F';
+
+        // Humidity for the forecast, why? I dunno, who uses this?
+        var forecastHumi = document.getElementById(`forecastHumi${0}`)
+        var forecastHumi1 = document.getElementById(`forecastHumi${1}`)
+        var forecastHumi2 = document.getElementById(`forecastHumi${2}`)
+        var forecastHumi3 = document.getElementById(`forecastHumi${3}`)
+        var forecastHumi4 = document.getElementById(`forecastHumi${4}`)
+        forecastHumi.textContent = data.list[6].main.humidity + '%';
+        forecastHumi1.textContent = data.list[14].main.humidity + '%';
+        forecastHumi2.textContent = data.list[22].main.humidity + '%';
+        forecastHumi3.textContent = data.list[30].main.humidity + '%';
+        forecastHumi4.textContent = data.list[38].main.humidity + '%';
 
         // var num = 6;
         // for (let i = 0; i < 5; i++) {
