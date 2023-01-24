@@ -19,6 +19,12 @@ var cardEl = document.getElementById('card');
 // puts the current date on the page
 dateEl.textContent = todayDate.format('MM~D~YYYY');
 
+function displayWeatherIcon(appendEl, iconCode){
+    var imgEl = document.createElement("img");
+    imgEl.src = `http://openweathermap.org/img/wn/${iconCode}.png`
+    appendEl.appendChild(imgEl);
+}
+
 // function to make the forecast cards
 function makeCards() {
     cardEl.innerHTML = '';
@@ -91,8 +97,33 @@ function cityForecast(city) {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=1ff1b9e8930bbe84b844222ea3d5a398&units=imperial').then(function(response){
         return response.json()
     }).then(function(data) {
-        // console.log(data)
+        console.log(data)
         makeCards();
+
+        // var forecastDateEl = document.getElementById(`forecastDate${0}`);
+        // var forecastDateEl1 = document.getElementById(`forecastDate${1}`);
+        // var forecastDateEl2 = document.getElementById(`forecastDate${2}`);
+        // var forecastDateEl3 = document.getElementById(`forecastDate${3}`);
+        // var forecastDateEl4 = document.getElementById(`forecastDate${4}`);
+
+        // var forecastDate = todayDate.add(1, 'day').format('MM~D~YYYY');
+        // var forecastDate1 = todayDate.add(2, 'day').format('MM~D~YYYY');
+        // var forecastDate2 = todayDate.add(3, 'day').format('MM~D~YYYY');
+        // var forecastDate3 = todayDate.add(4, 'day').format('MM~D~YYYY');
+        // var forecastDate4 = todayDate.add(5, 'day').format('MM~D~YYYY');
+
+        // forecastDateEl.textContent = forecastDate;
+        // forecastDateEl1.textContent = forecastDate1;
+        // forecastDateEl2.textContent = forecastDate2;
+        // forecastDateEl3.textContent = forecastDate3;
+        // forecastDateEl4.textContent = forecastDate4;
+
+        // // console.log(data.list[6].weather[0].icon);
+        // displayWeatherIcon(forecastIcon0, data.list[6].weather[0].icon);
+        // displayWeatherIcon(forecastIcon1, data.list[14].weather[0].icon);
+        // displayWeatherIcon(forecastIcon2, data.list[22].weather[0].icon);
+        // displayWeatherIcon(forecastIcon3, data.list[30].weather[0].icon);
+        // displayWeatherIcon(forecastIcon4, data.list[38].weather[0].icon);
     })
 }
 
@@ -127,6 +158,7 @@ function defaultForecast() {
     }).then(function(data) {
         console.log(data)
         makeCards();
+        // filling in the date for each card in the forecast
         var forecastDateEl = document.getElementById(`forecastDate${0}`);
         var forecastDateEl1 = document.getElementById(`forecastDate${1}`);
         var forecastDateEl2 = document.getElementById(`forecastDate${2}`);
@@ -144,6 +176,28 @@ function defaultForecast() {
         forecastDateEl2.textContent = forecastDate2;
         forecastDateEl3.textContent = forecastDate3;
         forecastDateEl4.textContent = forecastDate4;
+
+        // filling in the icon for the forecast
+        displayWeatherIcon(forecastIcon0, data.list[6].weather[0].icon);
+        displayWeatherIcon(forecastIcon1, data.list[14].weather[0].icon);
+        displayWeatherIcon(forecastIcon2, data.list[22].weather[0].icon);
+        displayWeatherIcon(forecastIcon3, data.list[30].weather[0].icon);
+        displayWeatherIcon(forecastIcon4, data.list[38].weather[0].icon);
+
+        // filling in the forecast weather type
+        var weatherType = document.getElementById(`weatherType${0}`);
+        var weatherType1 = document.getElementById(`weatherType${1}`);
+        var weatherType2 = document.getElementById(`weatherType${2}`);
+        var weatherType3 = document.getElementById(`weatherType${3}`);
+        var weatherType4 = document.getElementById(`weatherType${4}`);
+
+        weatherType.textContent = data.list[6].weather[0].description;
+        weatherType1.textContent = data.list[14].weather[0].description;
+        weatherType2.textContent = data.list[22].weather[0].description;
+        weatherType3.textContent = data.list[30].weather[0].description;
+        weatherType4.textContent = data.list[38].weather[0].description;
+    
+
         // var num = 6;
         // for (let i = 0; i < 5; i++) {
 
