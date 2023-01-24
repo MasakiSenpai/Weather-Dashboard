@@ -21,21 +21,23 @@ dateEl.textContent = todayDate.format('MM~D~YYYY');
 
 // function to make the forecast cards
 function makeCards() {
+    cardEl.innerHTML = '';
+    // console.log(cardEl);
     for (let i = 0; i < 5; i++) {
         var card = document.createElement('div');
+        // card.id = `card${i}`
         card.setAttribute('class', 'card m-1');
         card.setAttribute('style', 'width: 15rem;');
         cardEl.appendChild(card);
         var ulEl = document.createElement('ul');
         ulEl.setAttribute('class', 'list-group list-group-flush')
         ulEl.innerHTML = 
-        `   <li id="forecastDate" class="list-group-item"></li>
-            <li id="forecastIcon" class="list-group-item"></li> 
-            <li id="weatherType" class="list-group-item"></li>
-            <li id="forecastTemp" class="list-group-item"></li> 
-            <li id="forecastHumi" class="list-group-item"></li> `;
+        `   <li id="forecastDate${i}" class="list-group-item"></li>
+            <li id="forecastIcon${i}" class="list-group-item"></li> 
+            <li id="weatherType${i}" class="list-group-item"></li>
+            <li id="forecastTemp${i}" class="list-group-item"></li> 
+            <li id="forecastHumi${i}" class="list-group-item"></li> `;
         card.appendChild(ulEl);
-        // console.log
     }
 }
 
@@ -90,6 +92,7 @@ function cityForecast(city) {
         return response.json()
     }).then(function(data) {
         // console.log(data)
+        makeCards();
     })
 }
 
@@ -123,23 +126,50 @@ function defaultForecast() {
         return response.json()
     }).then(function(data) {
         console.log(data)
-        
-        var forecastDateEl = document.getElementById('forecastDate');
+        makeCards();
+        var forecastDateEl = document.getElementById(`forecastDate${0}`);
+        var forecastDateEl1 = document.getElementById(`forecastDate${1}`);
+        var forecastDateEl2 = document.getElementById(`forecastDate${2}`);
+        var forecastDateEl3 = document.getElementById(`forecastDate${3}`);
+        var forecastDateEl4 = document.getElementById(`forecastDate${4}`);
+
         var forecastDate = todayDate.add(1, 'day').format('MM~D~YYYY');
+        var forecastDate1 = todayDate.add(2, 'day').format('MM~D~YYYY');
+        var forecastDate2 = todayDate.add(3, 'day').format('MM~D~YYYY');
+        var forecastDate3 = todayDate.add(4, 'day').format('MM~D~YYYY');
+        var forecastDate4 = todayDate.add(5, 'day').format('MM~D~YYYY');
+
         forecastDateEl.textContent = forecastDate;
+        forecastDateEl1.textContent = forecastDate1;
+        forecastDateEl2.textContent = forecastDate2;
+        forecastDateEl3.textContent = forecastDate3;
+        forecastDateEl4.textContent = forecastDate4;
+        // var num = 6;
+        // for (let i = 0; i < 5; i++) {
 
-        var forecastTempEL = document.getElementById('forecastTemp');
-        var forecastTemp = data.list[6].main.temp;
-        forecastTempEL.textContent = forecastTemp;
 
-        
+        //     // var cardInfo = document.getElementById(`card${i}`)
+        //     let forecastDateEl = document.getElementById(`forecastDate${i}`);
+        //     let forecastDate = todayDate.add(i++, 'day').format('MM~D~YYYY');
+        //     forecastDateEl.textContent = forecastDate;
+        //     console.log(forecastDate);
+
+        //     let forecastTempEL = document.getElementById(`forecastTemp${i}`);
+        //     let forecastTemp = data.list[num].main.temp;
+        //     forecastTempEL.textContent = forecastTemp;
+            
+        //     let forecastHumiEL = document.getElementById(`forecastHumi${i}`);
+        //     let forecastHumi = data.list[num].main.humidity;
+        //     forecastHumiEL.textContent = forecastHumi;
+        //     num += 8;
+        // }
     })
 }
 
 searchBtn.addEventListener('click', getCityName);
 defaultWeather();
 defaultForecast();
-makeCards();
+// makeCards();
 
 // 0, 8, 16, 24, 32
 // 6, 14, 22, 30, 38
