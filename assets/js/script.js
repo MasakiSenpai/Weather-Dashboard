@@ -54,6 +54,9 @@ function getCityName(event) {
     // makes sure an empty button isn't created if nothing in typed
     if (city == '') {
         return ;
+    }  else if (!city.match(letters))  {
+        // makes sure the input doesn't accept numbers or symbols
+        return; 
     } else {
         cityWeather(city);
         cityForecast(city);
@@ -62,7 +65,7 @@ function getCityName(event) {
         makeBtn(city);
         setStorage();
     }
-};
+  };
 
 // takes the value from getCityName and gets the data for that city
 function cityWeather(city) {
