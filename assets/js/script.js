@@ -3,7 +3,6 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/forecast?q=CITYNAME&appid
 var searchBtn = document.getElementById('searchBtn');
 var searchBar = document.getElementById('searchBar');
 var searchHistory = document.getElementById('searchHistory');
-// var todayDate = dayjs().format('MM~D~YYYY');
 var todayDate = dayjs();
 var locationEl = document.getElementById('location');
 var dateEl = document.getElementById('date');
@@ -14,6 +13,7 @@ var weatherEl = document.getElementById('weather');
 var iconEl = document.getElementById('icon');
 var humidityEl = document.getElementById('humidity');
 var cardEl = document.getElementById('card');
+var locations = [];
 
 // puts the current date on the page
 dateEl.textContent = todayDate.format('MM~D~YYYY');
@@ -50,13 +50,17 @@ function makeCards() {
 function getCityName(event) {
     event.preventDefault();
     var city = searchBar.value;
-
+    var letters = /^[A-Za-z]+$/;
     // makes sure an empty button isn't created if nothing in typed
     if (city == '') {
         return ;
     } else {
         cityWeather(city);
         cityForecast(city);
+        
+        locations.push(city);
+        makeBtn(city);
+        setStorage();
     }
 };
 
@@ -65,12 +69,13 @@ function cityWeather(city) {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=1ff1b9e8930bbe84b844222ea3d5a398&units=imperial').then(function(response){
         return response.json();
     }).then(function(data){
-        console.log(data)
+        // console.log(data)
         var cityName = data.name;
-        var previous = document.createElement('p');
-        previous.setAttribute('class', 'btn col-12');
-        previous.textContent =  cityName;
-        searchHistory.appendChild(previous);
+        // var previous = document.createElement('p');
+        // previous.setAttribute('class', 'btn col-12');
+        // previous.textContent =  cityName;
+        // searchHistory.appendChild(previous);
+        // console.log(locations);
         
         var temp = data.main.temp;
         var high = data.main.temp_max;
@@ -96,7 +101,7 @@ function cityForecast(city) {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=1ff1b9e8930bbe84b844222ea3d5a398&units=imperial').then(function(response){
         return response.json()
     }).then(function(data) {
-        console.log(data)
+        // console.log(data)
         makeCards();
 
         // filling in the date for each card in the forecast
@@ -194,7 +199,7 @@ function defaultForecast() {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=Atlanta&appid=1ff1b9e8930bbe84b844222ea3d5a398&units=imperial').then(function(response) {
         return response.json()
     }).then(function(data) {
-        console.log(data)
+        // console.log(data)
         makeCards();
         // filling in the date for each card in the forecast
         var forecastDateEl = document.getElementById(`forecastDate${0}`);
@@ -254,6 +259,7 @@ function defaultForecast() {
         var forecastHumi2 = document.getElementById(`forecastHumi${2}`)
         var forecastHumi3 = document.getElementById(`forecastHumi${3}`)
         var forecastHumi4 = document.getElementById(`forecastHumi${4}`)
+        
         forecastHumi.textContent = data.list[6].main.humidity + '%';
         forecastHumi1.textContent = data.list[14].main.humidity + '%';
         forecastHumi2.textContent = data.list[22].main.humidity + '%';
@@ -282,11 +288,58 @@ function defaultForecast() {
     })
 }
 
+// makes the buttons for prevous searches
+function makeBtn(city) {
+    var previous = document.createElement('p');
+    previous.setAttribute('class', 'btn col-12');
+    previous.textContent =  city;
+    searchHistory.appendChild(previous);
+}
+
+// Keeps buttons on page when reload
+function displayLocations(locations) {
+    searchHistory.innerHTML = '';
+    console.log(locations);
+    var locLength = locations.length;
+    for (let i = 0; i < locLength; i++) {
+        var singleLocation = locations[i];
+
+        var previous = document.createElement('p');
+        previous.setAttribute('class', 'btn col-12');
+        previous.textContent =  singleLocation;
+        previous.setAttribute('data-index', i);
+
+        searchHistory.appendChild(previous);
+
+    }
+    
+}
+
+// Storage Function
+function setStorage() {
+    // var city = searchBar.value;
+    localStorage.setItem('locations', JSON.stringify(locations));
+}
+
+function init() {
+    var storedLocations = JSON.parse(localStorage.getItem('locations'));
+    if (storedLocations !== null) {
+        locations = storedLocations;
+    }
+    displayLocations(storedLocations);
+}
+// Listens for a click on the search button
 searchBtn.addEventListener('click', getCityName);
+// Listens for clicks on the previously searched buttons
+searchHistory.addEventListener('click', function(event) {
+    var target = event.target;
+    if(target.matches('p')) {
+        var content = target.textContent;
+        console.log(content);
+        cityWeather(content);
+        cityForecast(content);
+    }
+});
 defaultWeather();
 defaultForecast();
-// makeCards();
-
-// 0, 8, 16, 24, 32
-// 6, 14, 22, 30, 38
-// data.list[].main.temp
+init();
