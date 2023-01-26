@@ -166,10 +166,10 @@ function cityForecast(city) {
         var forecastHumi3 = document.getElementById(`forecastHumi${3}`)
         var forecastHumi4 = document.getElementById(`forecastHumi${4}`)
         forecastHumi.textContent =  'Humidity ' + data.list[6].main.humidity + '%';
-        forecastHumi1.textContent = 'Humidity' + data.list[14].main.humidity + '%';
-        forecastHumi2.textContent = 'Humidity' + data.list[22].main.humidity + '%';
-        forecastHumi3.textContent = 'Humidity' + data.list[30].main.humidity + '%';
-        forecastHumi4.textContent = 'Humidity' + data.list[38].main.humidity + '%';
+        forecastHumi1.textContent = 'Humidity ' + data.list[14].main.humidity + '%';
+        forecastHumi2.textContent = 'Humidity ' + data.list[22].main.humidity + '%';
+        forecastHumi3.textContent = 'Humidity ' + data.list[30].main.humidity + '%';
+        forecastHumi4.textContent = 'Humidity ' + data.list[38].main.humidity + '%';
     })
 }
 
