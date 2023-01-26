@@ -302,7 +302,7 @@ function makeBtn(city) {
 // Keeps buttons on page when reload
 function displayLocations(locations) {
     searchHistory.innerHTML = '';
-    console.log(locations);
+    // console.log(locations);
     var locLength = locations.length;
     for (let i = 0; i < locLength; i++) {
         var singleLocation = locations[i];
@@ -338,7 +338,7 @@ searchHistory.addEventListener('click', function(event) {
     var target = event.target;
     if(target.matches('p')) {
         var content = target.textContent;
-        console.log(content);
+        // console.log(content);
         cityWeather(content);
         cityForecast(content);
     }
